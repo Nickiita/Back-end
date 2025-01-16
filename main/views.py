@@ -1,32 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from .models import Person
+from .models import Person, Review
 from django.contrib.auth.models import User
+
 #from django.contrib.auth import User
-
-
-
-# def test(request):
-
-#     if request.method == "GET":
-#         return HttpResponse("1234")
-#     return HttpResponse(request.method)
-
-
-# def test(request):
-
-#     if request.method == "POST":
-
-#         all_persons = Person.objects.all()
-
-
-#         print(request.POST)
-#         return render(request, "main.html", {"test":request.POST['maininput']})
-
-#     payload = {
-#         "test": 2,
-#     }
-#     return render(request, "main.html", payload)
 
 
 def test(request):
@@ -48,3 +25,20 @@ def test(request):
         }
 
         return render(request, "main.html", data)
+
+
+def handle_review(request):
+    if request.method == "POST":
+        content = request.POST.get("content")
+
+        if content:
+            Review.objects.create(content=content)
+            return redirect("review_success")
+
+    elif request.method == "GET":
+        reviews = Review.objects.all()
+        return render(request, "handle_review.html", {"reviews": reviews})
+    
+
+def review_success(request):
+    return render(request, "review_success.html")

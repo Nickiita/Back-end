@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Отзывы</title>
+</head>
+<body>
+    <h1>Отзывы</h1>
+
+    <!-- Список всех отзывов -->
+    <ul>
+        {% for review in reviews %}
+        <li>{{ review.content }} ({{ review.created_time }})</li>
+        {% empty %}
+        <li>Пока отзывов нет.</li>
+        {% endfor %}
+    </ul>
+
+    <!-- Форма для добавления отзыва -->
+    <form method="POST">
+        {% csrf_token %}
+        <textarea name="content" placeholder="Ваш отзыв"></textarea>
+        <button type="submit">Оставить отзыв</button>
+    </form>
+</body>
+</html>
