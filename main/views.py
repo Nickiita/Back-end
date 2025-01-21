@@ -28,6 +28,7 @@ def test(request):
         return render(request, "main.html", data)
 
 
+@csrf_exempt
 def handle_review(request):
     if request.method == "POST":
         content = request.POST.get("content")
