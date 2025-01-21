@@ -12,3 +12,14 @@
 ![login](images_README/img2.png)
 
 ![logout](images_README/img3.png)
+
+
+Скрины из Postman'а для лабы №5:
+
+![create](images_README/create.png)
+
+![read](images_README/read.png)
+
+![update](images_README/update.png)
+
+![delete](images_README/delete.png)
