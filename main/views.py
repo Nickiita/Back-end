@@ -7,27 +7,6 @@ from django.views.decorators.csrf import csrf_exempt
 import json
 
 
-def test(request):
-    if request.method == "GET":
-        all_persons = User.objects.all()
-
-        print(all_persons[0].username)
-
-        data = {
-            "persons": all_persons[0].username,
-            "title": request.method,
-        }
-
-        return render(request, "main.html", data)
-    
-    if request.method == "POST":
-        data = {
-            "title": request,
-        }
-
-        return render(request, "main.html", data)
-
-
 @csrf_exempt
 def handle_review(request):
     if request.method == "POST":
