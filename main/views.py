@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from django.http import HttpResponse, JsonResponse
+from django.http import HttpResponseBadRequest, JsonResponse
 from .models import Person, Review
 from django.contrib.auth.models import User
 from django.contrib.auth import login, logout, authenticate
@@ -15,6 +15,9 @@ def handle_review(request):
         if content:
             Review.objects.create(content=content)
             return redirect("review_success")
+        
+        else: 
+            return HttpResponseBadRequest("Отзыв не может быть пустым")
 
     elif request.method == "GET":
         reviews = Review.objects.all()
